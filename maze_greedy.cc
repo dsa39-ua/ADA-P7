@@ -48,37 +48,6 @@ int maze_greedy(vector<vector<char>>& matriz){
     }
         
 }
-
-int maze_it_matrix(const vector<vector<char>>& matriz,vector<vector<int>>& matrizIt) {
-    size_t n = matriz.size();
-    size_t m = matriz[0].size();
-
-    const int limitInt = numeric_limits<int>::max();
-    // Si la casilla inicial es inaccesible, no hay camino
-    if (matriz[0][0] == '0') return -1;
-
-    matrizIt[0][0] = 1; // Se empieza en (0,0) y se cuenta como paso 1
-
-    for (size_t i = 0; i < n; ++i) {
-        for (size_t j = 0; j < m; ++j) {
-            if (!(matriz[i][j] == '0')){
-
-            // Desde arriba
-            if (i > 0 && matrizIt[i - 1][j] != limitInt)
-                matrizIt[i][j] = min(matrizIt[i][j], matrizIt[i - 1][j] + 1);
-
-            // Desde la izquierda
-            if (j > 0 && matrizIt[i][j - 1] != limitInt)
-                matrizIt[i][j] = min(matrizIt[i][j], matrizIt[i][j - 1] + 1);
-
-            // Desde la diagonal superior izquierda
-            if (i > 0 && j > 0 && matrizIt[i - 1][j - 1] != limitInt)
-                matrizIt[i][j] = min(matrizIt[i][j], matrizIt[i - 1][j - 1] + 1);
-            }
-        }
-    }
-    return (matrizIt[n - 1][m - 1] == limitInt) ? -1 : matrizIt[n - 1][m - 1];
-}
 int encontrarF(int argc, char* argv[]){
     int pos = -1;
     for (int i = 1; i < argc; i++)
