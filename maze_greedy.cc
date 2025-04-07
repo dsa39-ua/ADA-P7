@@ -26,13 +26,13 @@ int maze_greedy(vector<vector<char>>& matriz){
             i++;
             j++;
             resultado++;
-        } else if (j + 1 < columnas && matriz[i][j+1] == '1') {
-            matriz[i][j+1] = '*';
-            j++;
-            resultado++;
         } else if (i + 1 < filas && matriz[i+1][j] == '1') {
             matriz[i+1][j] = '*';
             i++;
+            resultado++;
+        } else if (j + 1 < columnas && matriz[i][j+1] == '1') {
+            matriz[i][j+1] = '*';
+            j++;
             resultado++;
         } else{
             movimiento = -1;
