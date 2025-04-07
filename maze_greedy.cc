@@ -22,35 +22,20 @@ int maze_greedy(vector<vector<char>>& matriz){
     while ((i != filas-1 || j != columnas -1) && movimiento != -1)
     {
         if (i + 1 < filas && j + 1 < columnas && matriz[i+1][j+1] == '1') {
-            movimiento = 0; // Diagonal superior izquierda
+            matriz[i+1][j+1] = '*';
+            i++;
+            j++;
+            resultado++;
         } else if (j + 1 < columnas && matriz[i][j+1] == '1') {
-            movimiento = 1; // Movimiento a la izquierda
+            matriz[i][j+1] = '*';
+            j++;
+            resultado++;
         } else if (i + 1 < filas && matriz[i+1][j] == '1') {
-            movimiento = 2; // Movimiento hacia arriba
+            matriz[i+1][j] = '*';
+            i++;
+            resultado++;
         } else{
             movimiento = -1;
-        }
-        switch (movimiento) {
-            case 0: // Diagonal superior izquierda
-                matriz[i+1][j+1] = '*';
-                i++;
-                j++;
-                resultado++;
-                break;
-            case 1: // Movimiento a la izquierda
-                matriz[i][j+1] = '*';
-                j++;
-                resultado++;
-                break;
-            case 2: // Movimiento hacia arriba
-                matriz[i+1][j] = '*';
-                i++;
-                resultado++;
-                break;
-            case -1:
-                break;
-            default:
-                break;
         }
     }
     matriz[0][0] = '*';
